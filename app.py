@@ -1,10 +1,9 @@
-from flask import jsonify
+from flask import jsonify, request
+from flask_restx import Api
+from .movies.v1.urls import url_configuration
 from .setting.settings import create_app
 
 app = create_app(__name__)
+api = Api(app)
 
-@app.route('/')
-def hello_world():
-    print(app.config['ENV'])
-    return jsonify(data='Hello, World')
-    
+url_configuration(api)
